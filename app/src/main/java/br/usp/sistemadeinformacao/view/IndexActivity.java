@@ -3,7 +3,10 @@ package br.usp.sistemadeinformacao.view;
 
 import android.app.Activity;
 
+import android.app.ProgressDialog;
+import android.os.AsyncTask;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -16,8 +19,16 @@ import com.google.android.gms.maps.MapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
+import java.util.List;
+
 import br.usp.sistemadeinformacao.R;
+import br.usp.sistemadeinformacao.modelo.Estacionamento;
 import br.usp.sistemadeinformacao.utils.Converte;
+import br.usp.sistemadeinformacao.utils.HttpUtils;
 
 public class IndexActivity extends Activity {
 
@@ -26,6 +37,8 @@ public class IndexActivity extends Activity {
     private Button btPesquisa;
     private EditText localizacao;
     private final static float MAX_ZOOM = 13.0f;
+    private List<Estacionamento> estacionamentos;
+
 
 
     @Override
@@ -63,13 +76,13 @@ public class IndexActivity extends Activity {
     }
 
     private void buscaEndereco(){
-        Toast toast = Toast.makeText(getApplicationContext(), "Pesquisando...", Toast.LENGTH_SHORT);
-        toast.show();
-        LatLng position = Converte.emLogintudeELatitude(busca,getApplicationContext());
-        maps.addMarker(new MarkerOptions()
+         LatLng position = Converte.emLogintudeELatitude(busca,getApplicationContext());
+
+        new EstacionamentoTask().execute(position);
+       /* maps.addMarker(new MarkerOptions()
                 .title("Estou aqui!!!")
                 .position(position));
-        maps.moveCamera(CameraUpdateFactory.newLatLngZoom(position, MAX_ZOOM));
+        maps.moveCamera(CameraUpdateFactory.newLatLngZoom(position, MAX_ZOOM));*/
 
     }
     /* public boolean onCreateOptionsMenu(Menu menu){
@@ -78,5 +91,32 @@ public class IndexActivity extends Activity {
 
         return true;
     }*/
+
+
+    public class EstacionamentoTask extends AsyncTask<LatLng,Void,List<Estacionamento>> {
+        private ProgressDialog dialog;
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            this.dialog = new ProgressDialog(IndexActivity.this);
+            dialog.show();
+        }
+
+        @Override
+        protected List<Estacionamento> doInBackground(LatLng... latLngs) {
+           return new ArrayList<Estacionamento>();
+        }
+
+        @Override
+        protected void onPostExecute(List<Estacionamento> estacionamentos) {
+            super.onPostExecute(estacionamentos);
+            if(estacionamentos != null){
+
+            }
+
+            dialog.dismiss();
+        }
+    }
 
 }
