@@ -2,7 +2,11 @@
 <resources>
 
     <string name="app_name">EstacioneAki</string>
+    <string name="maisbarato">+Barato</string>
+    <string name="maisproximo">+Próximo</string>
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
+    <string name="title_activity_mais_barato">MaisBaratoActivity</string>
+    <string name="title_activity_mais_proximo">MaisProximoActivity</string>
 
 </resources>
