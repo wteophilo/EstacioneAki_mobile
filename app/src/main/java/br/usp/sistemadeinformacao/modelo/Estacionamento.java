@@ -1,5 +1,7 @@
 package br.usp.sistemadeinformacao.modelo;
 
+import com.google.android.gms.maps.model.LatLng;
+
 import org.joda.time.DateTime;
 
 /**
@@ -13,6 +15,7 @@ public class Estacionamento {
     private DateTime hrFechamento;
     private int numTotalVagas;
     private int numVagasDisponiveis;
+    private LatLng geoLocalizacao;
 
     public Long getId() {
         return id;
@@ -70,5 +73,11 @@ public class Estacionamento {
         this.numVagasDisponiveis = numVagasDisponiveis;
     }
 
+    public void setGeoLocalizacao(LatLng posicao){
+        this.geoLocalizacao = posicao;
+    }
 
+    public LatLng getGeoLocalizacao() {
+        return geoLocalizacao;
+    }
 }

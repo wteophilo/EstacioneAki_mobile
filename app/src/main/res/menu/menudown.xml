@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:showAsAction="ifRoom"
+        android:id="@+id/barato"
+        android:title="+Barato"
+        android:icon="@drawable/money"/>
+
+    <item
+        android:showAsAction="ifRoom"
+        android:id="@+id/proximo"
+        android:title="+Próximo"
+        android:icon="@drawable/near"/>
+
+</menu>
