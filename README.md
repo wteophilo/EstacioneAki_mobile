@@ -1,4 +1,4 @@
 EstacioneAki_mobile
 ===================
 
-Versão mobile do EstacioAki
+Versão mobile do EstacioAki.
